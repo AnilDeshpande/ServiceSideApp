@@ -2,13 +2,11 @@ package servicesideapp.youtube.com.servicesideapp;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -27,15 +25,15 @@ public class MyService extends Service {
     private final int MIN=0;
     private final int MAX=100;
 
-    public static final int GET_COUNT=0;
+    public static final int GET_RANDOM_NUMBER_FLAG=0;
 
     private class RandomNumberRequestHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
 
             switch (msg.what){
-                case GET_COUNT:
-                    Message  messageSendRandomNumber=Message.obtain(null,GET_COUNT);
+                case GET_RANDOM_NUMBER_FLAG:
+                    Message  messageSendRandomNumber=Message.obtain(null, GET_RANDOM_NUMBER_FLAG);
                     messageSendRandomNumber.arg1=getRandomNumber();
                     try{
                         msg.replyTo.send(messageSendRandomNumber);
